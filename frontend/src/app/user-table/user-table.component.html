@@ -1,0 +1,88 @@
+<div fxLayout fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input
+      matInput
+      type="text"
+      (keyup)="doFilter($event.target.value)"
+      placeholder="Search"
+    />
+  </mat-form-field>
+</div>
+<div fxLayout fxLayoutAlign="center center">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 demo-table"
+    matSort
+  >
+    <!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
+      <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+    </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <button
+          mat-icon-button
+          color="primary"
+          class="editIcon"
+          (click)="editUsers(element.id)"
+        >
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >edit</mat-icon
+          >
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="deleteUsers(element.id, i)"
+          class="deleteIcon"
+        >
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >delete</mat-icon
+          >
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
+
+<div fxLayout fxLayoutAlign="center center">
+  <mat-paginator
+    class="mat-elevation-z8"
+    [pageSizeOptions]="[5, 10, 20]"
+    [pageSize]="10"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>

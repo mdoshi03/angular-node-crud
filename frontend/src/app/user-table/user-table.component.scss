@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.demo-table {
+  width: 70%;
+  justify-content: center;
+}
+
+.mat-row .mat-cell {
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+.mat-paginator {
+  width: 70%;
+  display: flex;
+  justify-content: right;
+  box-shadow: inset;
+}
+
+// .deleteIcon:hover {
+//   color: #d11a2a;
+// }
+
+.mat-icon-button {
+  filter: brightness(80%);
+}
+
+.mat-icon-button:hover {
+  filter: brightness(100%);
+}

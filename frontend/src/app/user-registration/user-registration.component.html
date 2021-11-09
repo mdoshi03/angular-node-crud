@@ -1,0 +1,81 @@
+<div fxLayout fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-title>User Registration</mat-card-title>
+
+    <form [formGroup]="userForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your First Name</mat-label>
+        <input
+          matInput
+          placeholder="Jane"
+          formControlName="firstName"
+          required
+        />
+
+        <mat-error *ngIf="checkError('firstName', 'required')"
+          >First Name is required</mat-error
+        >
+        <mat-error *ngIf="checkError('firstName', 'minlength')"
+          >Minimum 2 Characters Required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your Last Name</mat-label>
+        <input matInput placeholder="Doe" formControlName="lastName" required />
+        <mat-error *ngIf="checkError('lastName', 'required')"
+          >Last Name is required</mat-error
+        >
+        <mat-error *ngIf="checkError('lastName', 'minlength')"
+          >Minimum 2 Characters Required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="abc@miraclesoft.com"
+          formControlName="email"
+          required
+        />
+        <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
+        <mat-error *ngIf="checkError('email', 'required')"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="checkError('email', 'pattern')"
+          >Please enter a MiracleSoft email</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" required matInput type="password" />
+
+        <mat-error *ngIf="checkError('password', 'required')"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="checkError('password', 'minlength')"
+          >Minimum 6 Characters Required</mat-error
+        >
+      </mat-form-field>
+
+      <button
+        *ngIf="!getparamid"
+        mat-raised-button
+        color="primary"
+        (click)="submit()"
+        [disabled]="!userForm.valid"
+      >
+        Log In
+      </button>
+      <button
+        *ngIf="getparamid"
+        mat-raised-button
+        color="primary"
+        (click)="userUpdate()"
+        [disabled]="!userForm.valid"
+      >
+        Update
+      </button>
+    </form>
+  </mat-card>
+</div>
